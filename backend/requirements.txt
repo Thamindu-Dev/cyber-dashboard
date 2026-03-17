@@ -1,9 +1,19 @@
+# DDoS Detection System - Backend Requirements
+# Python 3.12 (same version used for model training)
+
+# Core Framework
 fastapi==0.109.0
 uvicorn[standard]==0.27.0
 python-multipart==0.0.6
+
+# Data Processing
 pandas==2.1.4
 numpy==1.26.3
-xgboost==2.0.3
-scikit-learn==1.4.0
+
+# Machine Learning (must match training environment)
+xgboost==3.2.0
+scikit-learn==1.8.0
 joblib==1.3.2
+
+# Rate Limiting
 slowapi==0.1.9

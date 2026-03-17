@@ -6,6 +6,7 @@ colorTo: red
 sdk: docker
 pinned: false
 license: mit
+python_version: "3.12"
 tags:
   - cybersecurity
   - ddos-detection
