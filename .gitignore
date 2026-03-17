@@ -42,11 +42,12 @@ ENV/
 *.pb
 
 # Data files
-*.csv
 *.xlsx
 *.xls
-!data/*.csv
 Master_DDoS_Dataset.csv
+*.csv
+!data/*.csv
+!test_ddos_data.csv
 
 # IDE
 .vscode/
@@ -64,3 +65,5 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+generate_test_data.py
+.claude/settings.local.json

@@ -176,8 +176,22 @@ def preprocess_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 def run_inference(df: pd.DataFrame):
     """Run inference using both models."""
+    # Classification prediction (works on raw data)
     attack_predictions = classifier.predict(df)
-    severity_scores = regressor.predict(df)
+
+    # Severity prediction requires scaled data
+    # Scale the features before prediction
+    try:
+        df_scaled = traffic_scaler.transform(df)
+        severity_scores = regressor.predict(df_scaled)
+
+        # Ensure severity scores are in valid range [0, 100]
+        severity_scores = np.clip(severity_scores, 0, 100)
+    except Exception as e:
+        logger.warning(f"Scaling failed, using raw data: {e}")
+        # Fallback: predict on raw data and clip
+        severity_scores = np.clip(regressor.predict(df), 0, 100)
+
     return attack_predictions, severity_scores
 
 
